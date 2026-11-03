@@ -37,3 +37,32 @@ lets you count with different controls (click buttons, keybinds, directly changi
     the number in binary (e.g. 6 -> 110)
     the number in hexadecimal (e.g. 255 -> ff)
 </details>
+
+### random rumbles
+generates a random number from 1 to 2^31 - 1 (2147483647) every [interval]ms!
+
+you can control the interval via slider or by directly editing the input field.
+
+there are also presets:
+
+- 1 - 1000ms
+- 1/2 - 500ms
+- 1/4 - 250ms
+- 1/8 - 125ms
+- 1/16 - 62.5ms
+- 1/32 - 31.25ms
+
+### rainbow
+simplest tool yet. 
+
+shows a little box whose colour changes every 1000ms (1s)!
+
+the colours:
+- #ff1233 - red
+- #ffaa00 - orange
+- #ffcc00 - yellow
+- #30ff30 - green
+- #00cccc - cyan
+- #0060bb - blue
+- #6000ff - purple
+- #bb00ff - violet
