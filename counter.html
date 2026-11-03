@@ -1,0 +1,159 @@
+<head>
+    <title>counting chamber!</title>
+    <link rel="stylesheet" href="favstyle.css">
+</head>
+
+<body>
+    <h1>counter!</h1>
+    <p id="desc">this page allows you to count while also showing you fun facts about the numbers! <br>
+        play around with the buttons to change the number. <br>
+        you can also click - and + on your keyboard or type in the text box!
+    </p>
+    <input id="dspl">
+    <button id="add">+1</button> <button id="sub">-1</button>
+
+<p>
+    <div id="prime">is prime?</div>
+    <div id="even">is even?</div>
+    <div id="factors">factors</div>
+    <div id="factorial">factorial</div>
+    <div id="square">square</div>
+    <div id="cube">cube</div>
+</p>
+<details>
+    <summary>for nerds</summary>
+    <p id="info">
+        <div id="perfection">is perfect?</div>
+        <div id="back">backwards: </div>
+        <div id="palindrome">is a palindrome?</div>
+        <div id="bin">binary: </div>
+        <div id="hex">hexadecimal: </div>
+    </p>
+    
+</details>
+
+<br><br><br>
+<b>counting chamber</b> <br>
+<a href="random.html">random rumbles</a> <br>
+<a href="tempo.html">tempo tester</a> <br>
+</body>
+
+<script>
+    // counting
+    const add  = document.getElementById("add")
+    const sub  = document.getElementById("sub")
+    const dspl = document.getElementById("dspl")
+
+    let x = 0
+
+    sub.addEventListener('click', function() {
+        x--;
+        dspl.value = x.toString()
+        updateFacts()
+    });
+
+    add.addEventListener('click', function() {
+        x++;
+        dspl.value = x.toString()
+        updateFacts()
+    });
+
+    dspl.addEventListener('input', function() {
+        x = parseInt(dspl.value) || 0;
+        updateFacts()
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === '-') {
+            x--;
+            dspl.value = x.toString()
+            updateFacts()
+        } else if (event.key === '=' || event.key === '+') {
+            x++;
+            dspl.value = x.toString()
+            updateFacts()
+        }
+    });
+
+    // facts
+    const prime = document.getElementById("prime")
+    const even = document.getElementById("even")
+    const factors = document.getElementById("factors")
+    const factorial = document.getElementById("factorial")
+    const square = document.getElementById("square")
+    const cube = document.getElementById("cube")
+
+    function isPrime(num) {
+        if (num <= 1) return false;
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i === 0) return false;
+        }
+        return true;
+    }
+
+    function isEven(num) {
+        return num % 2 === 0;
+    }
+
+    function getFactors(num) {
+        const factors = [];
+        for (let i = 1; i <= num; i++) {
+            if (num % i === 0) {
+                factors.push(i);
+            }
+        }
+        return factors;
+    }
+
+    function getFactorial(num) {
+        if (num > 21) return "too big!";
+        if (num < 0) return "undefined!";
+        if (num === 0 || num === 1) return 1;
+        let factorial = 1;
+        for (let i = 2; i <= num; i++) {
+            factorial *= i;
+        }
+        return factorial;
+    }
+
+    function getSquare(num) {
+        return num * num;
+    }
+
+    function getCube(num) {
+        return num * num * num;
+    }
+
+    function getPerfection(num) {
+        if (getFactors(num).reduce((a, b) => a + b, 0) === num) {
+            return true;
+        } else if (num === 0) {
+            return "zero";
+        } else if (getFactors(num).reduce((a, b) => a + b, 0) > num) {
+            return "abundant";
+        } else if (getFactors(num).reduce((a, b) => a + b, 0) < num) {
+            return "deficient";
+        }
+    }
+
+    
+    // nerd facts
+    const back = document.getElementById("back")
+    const palindrome = document.getElementById("palindrome")
+    const binary = document.getElementById("bin")
+    const hex = document.getElementById("hex")
+
+    function updateFacts() {
+        prime.textContent = `is prime? ${isPrime(x) ? "yes" : "no"}`
+        even.textContent = `is even? ${isEven(x) ? "yes" : "no"}`
+        perfection.textContent = `is perfect? ${getPerfection(x)}`
+        factors.textContent = `factors: ${getFactors(x).join(', ')}`
+        factorial.textContent = `factorial: ${getFactorial(x)}`
+        square.textContent = `square: ${getSquare(x)}`
+        cube.textContent = `cube: ${getCube(x)}`
+        back.textContent = `backwards: ${x.toString().split('').reverse().join('')}`
+        palindrome.textContent = `is a palindrome? ${x.toString() === x.toString().split('').reverse().join('') ? "yes" : "no"}`
+        binary.textContent = `binary: ${x.toString(2)}`
+        hex.textContent = `hexadecimal: ${x.toString(16)}`
+    }
+</script>

@@ -1,0 +1,31 @@
+<head>
+    <link rel="stylesheet" href="favstyle.css">
+</head>
+
+<body>
+    <h1>rainbow!</h1>
+    <p id="desc">this page shows off some colours. <br>
+    watch the little box below change colours every second!
+    </p>
+    
+    <div class="box red-bg"></div>
+
+    <br><br><br>
+    <a href="counter.html">counting chamber</a> <br>
+    <a href="random.html">random rumbles</a> <br>
+    <a href="tempo.html">tempo tester</a> <br>
+    <b>rainbows</b>
+</body>
+
+<script>
+    const box = document.querySelector('.box');
+    
+    let colours = ['red-bg', 'orange-bg', 'yellow-bg', 'green-bg', 'cyan-bg', 'blue-bg', 'purple-bg', 'violet-bg', 'pink-bg'];
+    let index = 0;
+
+    setInterval(() => {
+        box.classList.remove(colours[index]);
+        index = (index + 1) % colours.length;
+        box.classList.add(colours[index]);
+    }, 1000);
+</script>

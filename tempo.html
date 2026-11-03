@@ -1,0 +1,96 @@
+<head>
+    <title>tempo tester</title>
+    <link rel="stylesheet" href="favstyle.css">
+</head>
+
+<h1>tempo!</h1>
+<p id="desc">this page shows off some tempos. <br>
+play around with the speed buttons to change the speed of the tempos!
+</p>
+
+<div id="1">Tempo</div>
+<div id="1/2">Half Tempo</div>
+<div id="1/4">Quarter Tempo</div>
+<div id="1/8">Eighth Tempo</div>
+<div id="1/16">Sixteenth Tempo</div>
+<div id="1/32">Thirty-second Tempo</div>
+<div id="1/64">Sixty-fourth Tempo</div>
+<div id="1/128">One hundred twenty-eighth Tempo</div>
+
+<button id="slow">slow down</button> <button id="normal">normal speed</button> <button id="fast">speed up</button>
+<div id="speed">speed</div>
+
+<br><br><br>
+<a href="counter.html">counting chamber</a> <br>
+<a href="random.html">random rumbles</a> <br>
+<b>tempo tester</b> <br>
+<a href="rainbow.html">rainbows</a> <br>
+<script>
+    // speed
+    const slow = document.getElementById("slow")
+    const normal = document.getElementById("normal")
+    const fast = document.getElementById("fast")
+    const speedDisplay = document.getElementById("speed")
+
+    // tempo displays
+    const tempo1 = document.getElementById("1")
+    const tempo2 = document.getElementById("1/2")
+    const tempo3 = document.getElementById("1/4")
+    const tempo4 = document.getElementById("1/8")
+    const tempo5 = document.getElementById("1/16")
+    const tempo6 = document.getElementById("1/32")
+    const tempo7 = document.getElementById("1/64")
+    const tempo8 = document.getElementById("1/128")
+    
+    // variables
+    let speed = 1
+    let interval
+    let tick = 0
+
+    function startTempo() {
+        if (interval) {
+            clearInterval(interval)
+        }
+        interval = setInterval(() => {
+            tick++
+            // tempos
+            let x = Math.floor(tick / 32) % 5
+            let y = Math.floor(tick / 16) % 5
+            let z = Math.floor(tick / 8) % 5
+            let w = Math.floor(tick / 4) % 5
+            let a = Math.floor(tick / 2) % 5
+            let b = tick % 5
+            let c = (tick * 2) % 5
+            let d = (tick * 4) % 5
+            
+            // text update
+            tempo1.textContent = x.toString() + " << 1"
+            tempo2.textContent = y.toString() + " << 1/2"
+            tempo3.textContent = z.toString() + " << 1/4"
+            tempo4.textContent = w.toString() + " << 1/8"
+            tempo5.textContent = a.toString() + " << 1/16"
+            tempo6.textContent = b.toString() + " << 1/32"
+            tempo7.textContent = c.toString() + " << 1/64"
+            tempo8.textContent = d.toString() + " << 1/128"
+        }, 31.25 * speed)
+    }
+
+    slow.addEventListener('click', function() {
+        speed *= 2
+        speedDisplay.textContent = speed.toString() + "x"
+        startTempo()
+    });
+
+    normal.addEventListener('click', function() {
+        speed = 1
+        speedDisplay.textContent = speed.toString() + "x"
+        startTempo()
+    });
+
+    fast.addEventListener('click', function() {
+        speed *= 0.5
+        speedDisplay.textContent = speed.toString() + "x"
+        startTempo()
+    });
+    startTempo()
+</script>

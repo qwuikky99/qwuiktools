@@ -1,0 +1,106 @@
+<head>
+	<title>random!</title>
+	<link rel="stylesheet" href="favstyle.css">
+</head>
+
+<body>
+	<h1>random!</h1>
+	<p id="desc">description</p>
+	<div id="randNum">random num</div> 
+	<label for="slider">How fast should it be?: </label>
+	<input type="range" id="slider" min="1" max="10000">
+	<input id="dspl">
+
+	<h3>presets!</h3>
+	<button id="1">1</button>
+	<button id="2">1/2</button>
+	<button id="3">1/4</button>
+	<button id="4">1/8</button>
+	<button id="5">1/16</button>
+	<button id="6">1/32</button>
+	<br><br><br>
+	<a href="counter.html">counting chamber</a> <br>
+	<b>random rumbles</b> <br>
+	<a href="tempo.html">tempo tester</a> <br>
+	<a href="rainbow.html">rainbows</a> <br>
+</body>
+<script>
+	// unspecific
+	const desc = document.getElementById("desc")
+	// slider handling
+	const slider = document.getElementById("slider")
+	const dspl = document.getElementById("dspl")
+	let tempo = 500
+
+	// random
+	const rand = document.getElementById("randNum")
+	
+	function pickRandomNum(min, max) {
+		const minCeiled = Math.ceil(min)
+		const maxFloored = Math.floor(max)
+		return Math.floor(Math.random() * (maxFloored - minCeiled + 1)) + minCeiled
+	}
+	
+	// actual functionality
+	let interval
+	
+	function startRandom() {
+		clearInterval(interval)
+		
+		interval = setInterval(() => {
+			rand.textContent = pickRandomNum(1, 2147483647).toString()
+		}, tempo)
+	}
+	
+	// reusables
+	function setTempo(value) {
+		tempo = value
+		startRandom()
+		slider.value = tempo
+		dspl.value = tempo.toString()
+		updateDesc()
+	}
+
+	function updateDesc() {
+		desc.innerHTML = `this page generates a random number between 1 and 2^31-1 (2147483647) every ${tempo}ms. <br> 
+play around with the slider, presets or input box to change the tempo! <br>
+photosensitivity warning for low tempos (1-100) O.o`
+	}
+	
+	// interaction
+	slider.addEventListener('input', function() {
+		tempo = Number(this.value)
+		dspl.value = tempo.toString()
+		updateDesc()
+		startRandom()
+	})
+
+	dspl.addEventListener('input', function() {
+		tempo = Number(this.value)
+		slider.value = tempo
+		updateDesc()
+		startRandom()
+	})
+
+
+	// presets
+	const preset1 = document.getElementById("1")
+	const preset2 = document.getElementById("2")
+	const preset3 = document.getElementById("3")
+	const preset4 = document.getElementById("4")
+	const preset5 = document.getElementById("5")
+	const preset6 = document.getElementById("6")
+
+	preset1.addEventListener('click', function() {setTempo(1000)})
+	preset2.addEventListener('click', function() {setTempo(500)})
+	preset3.addEventListener('click', function() {setTempo(250)})
+	preset4.addEventListener('click', function() {setTempo(125)})
+	preset5.addEventListener('click', function() {setTempo(62.5)})
+	preset6.addEventListener('click', function() {setTempo(31.25)})
+	
+	// init
+	startRandom()
+	slider.value = tempo
+	dspl.value = tempo.toString()
+	updateDesc()
+</script>

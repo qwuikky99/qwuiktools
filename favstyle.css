@@ -1,0 +1,126 @@
+/* favstyle.css
+* by qwuikky!
+* this is my favourite stylesheet, feel free to use it and/or change it around :D
+*/
+
+/* tag changes */
+body {
+    font-family:'Segoe UI', monospace;
+    color: white;
+    background-color: black;
+    text-align: center;
+    font-size: 32px;
+}
+
+p {
+    font-size: 24px;
+}
+
+/* link styles! */
+a {
+    color: #0bf;
+    font-style: italic;
+}
+a:hover {
+    color: #09e;
+}
+a:active {
+    color: #0df;
+}
+a:visited {
+    color: #b0f;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    transition: background-color 1s ease;
+    margin: 0 auto;
+}
+
+
+
+/* basic colours!
+aka rainbowss :D */
+
+.red {
+    color: #ff1233
+}
+
+.orange {
+    color: #ffaa00
+}
+
+.yellow {
+    color: #ffcc00
+}
+
+.green {
+    color: #30ff30
+}
+
+.cyan {
+    color: #00cccc
+}
+
+.blue {
+    color: #0060bb
+}
+
+.purple {
+    color: #6000ff
+}
+
+.violet {
+    color: #bb00ff
+}
+
+.pink {
+    color: #ffaaff
+}
+
+.white {
+    color: #fff
+}
+
+/* background colours! */
+.red-bg {
+    background-color: #ff1233
+}
+
+.orange-bg {
+    background-color: #ffaa00
+}
+
+.yellow-bg {
+    background-color: #ffcc00
+}
+
+.green-bg {
+    background-color: #30ff30
+}
+
+.cyan-bg {
+    background-color: #00cccc
+}
+
+.blue-bg {
+    background-color: #0060bb
+}
+
+.purple-bg {
+    background-color: #6000ff
+}
+
+.violet-bg {
+    background-color: #bb00ff
+}
+
+.pink-bg {
+    background-color: #ffaaff
+}
+
+.white-bg {
+    background-color: #fff
+}
